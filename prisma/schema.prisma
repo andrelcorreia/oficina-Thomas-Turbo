@@ -1,0 +1,21 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model vehicles {
+  id                  String  @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  brand               String  @db.VarChar
+  model               String  @db.VarChar
+  year_of_manufacture Int
+  plate               String  @db.VarChar
+  mileage             Float
+  color               String  @db.VarChar
+  comments            String? @db.VarChar
+  document_owner      String  @db.VarChar
+  owner_name          String  @db.VarChar
+}
