@@ -19,6 +19,12 @@ export class SessionUseCase {
 			return { message: 'Email ou password inválido' };
 		}
 
-		return { message: 'logado com sucesso!' };
+		const user = {
+		name: emailExist.name,
+		email: emailExist.email,
+		}
+
+
+		return { message: 'logado com sucesso!', user };
 	}
 }

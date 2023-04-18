@@ -2,9 +2,10 @@ import express from 'express';
 import { VehicleRouter } from './routes/vehicleRoutes';
 import { UserRouter } from './routes/userRoutes';
 import { SessionRouter } from './routes/sessionRoutes';
+import cors from 'cors'
 
 const app = express();
-
+app.use(cors())
 app.use(express.json());
 
 app.use('/vehicles', VehicleRouter);
