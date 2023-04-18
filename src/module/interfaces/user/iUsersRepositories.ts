@@ -1,10 +1,15 @@
-import { Users, createUsers, listUsers, updateUsers } from "./users";
+import {
+	Users,
+	createUsers,
+	listUsers,
+	updateUsers,
+	deleteUsers,
+} from './users';
 
-
-export interface IUserRepositories{
-    create(props: createUsers): Promise<Users>
-    listAll(): Promise<listUsers[]>
-    listById(id: string): Promise<Users | null>
-    update(props: updateUsers): Promise<Users>
-    delete(id: string): Promise<void>
+export interface IUserRepositories {
+	create(props: createUsers): Promise<Users>;
+	listAll(): Promise<listUsers[]>;
+	listById(id: string): Promise<Users | null>;
+	update(props: updateUsers): Promise<Users>;
+	inactive(id: string): Promise<Users>;
 }

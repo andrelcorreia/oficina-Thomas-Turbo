@@ -8,21 +8,30 @@ datasource db {
 }
 
 model vehicles {
-  id                  String  @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  brand               String  @db.VarChar
-  model               String  @db.VarChar
+  id                  String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  brand               String   @db.VarChar
+  model               String   @db.VarChar
   year_of_manufacture Int
-  plate               String  @db.VarChar
+  plate               String   @db.VarChar
   mileage             Float
-  color               String  @db.VarChar
-  comments            String? @db.VarChar
-  document_owner      String  @db.VarChar
-  owner_name          String  @db.VarChar
+  color               String   @db.VarChar
+  comments            String?  @db.VarChar
+  document_owner      String   @db.VarChar
+  owner_name          String   @db.VarChar
+  active              Boolean? @default(true)
 }
 
 model users {
-  id       String @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  name     String @db.VarChar
-  email    String @db.VarChar
-  password String @db.VarChar
+  id       String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  name     String   @db.VarChar
+  email    String   @db.VarChar
+  password String   @db.VarChar
+  active   Boolean? @default(true)
+}
+
+model token_refresh {
+  id        Int      @id @default(autoincrement())
+  token     String   @db.VarChar
+  user_id   String   @db.VarChar
+  create_at DateTime @default(now()) @db.Timestamp(6)
 }
