@@ -19,3 +19,10 @@ model vehicles {
   document_owner      String  @db.VarChar
   owner_name          String  @db.VarChar
 }
+
+model users {
+  id       String @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  name     String @db.VarChar
+  email    String @db.VarChar
+  password String @db.VarChar
+}
