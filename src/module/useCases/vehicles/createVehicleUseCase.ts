@@ -14,6 +14,11 @@ export class CreateVehicleUseCase {
         comments,
         document_owner,
         owner_name}: CreateVehicle): Promise<any> {
+        const plateExist = await vehiclesRepository.listByPlate(plate)
+
+        if(plateExist) {
+            return{message: 'Placa já existente'}
+        }
 
         const today = new Date().getFullYear()
 

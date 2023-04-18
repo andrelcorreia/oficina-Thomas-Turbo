@@ -7,6 +7,12 @@ const userRepository = new UserRepository()
 
 export class CreateUserUseCase {
     async execute({name, email, password}: createUsers): Promise<any> {
+        const emailExist = await userRepository.listByEmail(email)
+
+        if(emailExist){
+            return{message: 'Email já em uso'}
+        }
+
         const salt = 12
         const regex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
 

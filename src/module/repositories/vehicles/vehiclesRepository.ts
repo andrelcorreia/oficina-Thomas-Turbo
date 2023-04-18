@@ -34,6 +34,13 @@ export class VehiclesRepository implements iVehiclesRepositories {
 			},
 		});
 	}
+	async listByPlate(plate: string): Promise<Vehicle | null> {
+		return prisma.vehicles.findFirst({
+			where: {
+				plate: plate,
+			},
+		});
+	}
 	async inactive(id: string): Promise<Vehicle> {
 		return prisma.vehicles.update({
 			where: {
